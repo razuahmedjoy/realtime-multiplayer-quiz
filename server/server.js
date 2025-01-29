@@ -257,14 +257,13 @@ io.on("connection", (socket) => {
 
 
 // Start server
-const WS_PORT = process.env.PORT || 5000;
-const HTTP_PORT = process.env.PORT || 5001;
-server.listen(WS_PORT, async () => {
-  console.log(`Server running on port ws ${WS_PORT}`);
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, async () => {
+  console.log(`Server running on port ws ${PORT}`);
 });
 
 
-app.listen(HTTP_PORT, async () => {
+app.listen(PORT, async () => {
   await connectDB();
-  console.log(`Server running on port http ${HTTP_PORT}`);
+  console.log(`Server running on port http ${PORT}`);
 });
