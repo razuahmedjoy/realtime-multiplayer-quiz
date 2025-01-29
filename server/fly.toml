@@ -1,0 +1,32 @@
+app = "server-broken-night-5589"
+primary_region = "sin"
+
+[env]
+  PORT = "3000"
+
+[build]
+
+[[services]]
+  internal_port = 3000
+  protocol = "tcp"
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = 3000
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+
+[vm]
+  memory = "1gb"
+  cpu_kind = "shared"
+  cpus = 1
