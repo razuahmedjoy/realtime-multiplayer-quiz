@@ -22,7 +22,7 @@ const Player = () => {
 
     useEffect(() => {
         // Initialize socket connection
-        socketRef.current = io(import.meta.env.VITE_SOCKET_URL); // Replace with your server URL
+        socketRef.current = io("wss://server-broken-night-5589.fly.dev"); // Replace with your server URL
 
         // Cleanup socket connection on component unmount
         return () => {

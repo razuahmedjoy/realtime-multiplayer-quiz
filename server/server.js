@@ -1,6 +1,6 @@
 // backend/server.js
 const express = require("express");
-const mongoose = require("mongoose");
+
 const cors = require("cors");
 const http = require("http");
 const socketIo = require("socket.io");
@@ -8,7 +8,6 @@ const lobbyRoutes = require("./routes/lobbyRoutes");
 const quizRoutes = require("./routes/quizRoutes");
 const Lobby = require("./models/Lobby");
 const connectDB = require("./config/database");
-const Quiz = require("./models/Quiz");
 require('dotenv').config();
 const app = express();
 const server = http.createServer(app);
@@ -256,14 +255,9 @@ io.on("connection", (socket) => {
 // Connect to MongoDB
 
 
-// Start server
-const PORT = process.env.PORT || 5000;
-server.listen(PORT, async () => {
-  console.log(`Server running on port ws ${PORT}`);
-});
-
-
-app.listen(PORT, async () => {
+// Start server and bind to 0.0.0.0
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, "0.0.0.0", async () => {
   await connectDB();
-  console.log(`Server running on port http ${PORT}`);
+  console.log(`Server running on http://0.0.0.0:${PORT}`);
 });
