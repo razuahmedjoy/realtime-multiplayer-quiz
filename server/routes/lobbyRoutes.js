@@ -4,6 +4,8 @@ const Lobby = require("../models/Lobby");
 const Quiz = require("../models/Quiz");
 const QRCode = require("qrcode");
 
+
+
 const router = express.Router();
 
 // Create a lobby
@@ -29,7 +31,7 @@ router.post("/create", async (req, res) => {
     await lobby.save();
 
     // Generate a QR code for the room URL
-    const roomUrl = `http://localhost:5173/player/${lobby._id}`;
+    const roomUrl = `${process.env.FRONTEND_URL}/player/${lobby._id}`;
     const qrCode = await QRCode.toDataURL(roomUrl);
 
     res.json({ lobbyId: lobby._id, qrCode, roomUrl });

@@ -46,6 +46,7 @@ const LobbyLeader = () => {
         // Listen for "newQuestion" event
         socketRef.current.on("newQuestion", ({ currentQuestionIndex, quiz }) => {
             setQuestion(quiz);
+            
 
         });
 
@@ -70,6 +71,7 @@ const LobbyLeader = () => {
 
     }
 
+    console.log(question)
 
 
     if (!data) return (
