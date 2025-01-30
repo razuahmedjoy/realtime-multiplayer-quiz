@@ -40,7 +40,9 @@ app.use("/api/quiz", quizRoutes);
 // Socket.IO
 io.on("connection", (socket) => {
 
+  // console.log("A user connected:", socket.id);
   console.log("A user connected:", socket.id);
+  
 
   socket.on("create_room", async ({ lobbyId }) => {
     socket.join(lobbyId);
@@ -257,7 +259,20 @@ io.on("connection", (socket) => {
 
 // Start server and bind to 0.0.0.0
 const PORT = process.env.PORT || 3000;
-server.listen(PORT, "0.0.0.0", async () => {
-  await connectDB();
-  console.log(`Server running on http://0.0.0.0:${PORT}`);
-});
+
+const isProduction = process.env.NODE_ENV === "production";
+
+if (isProduction) {
+  server.listen(PORT, "0.0.0.0", async () => {
+    await connectDB();
+    console.log(`Server running on http://0.0.0.0:${PORT}`);
+  });
+}
+else {
+
+  server.listen(PORT, async () => {
+    await connectDB();
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
+
+}

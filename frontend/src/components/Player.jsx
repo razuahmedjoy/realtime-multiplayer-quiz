@@ -1,12 +1,11 @@
 import useLoadingStore from "@/store/useLoadingStore";
 import { useEffect, useState, useRef } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 
 import { io } from "socket.io-client";
 import LoadingSpinner from "./Loading";
 
 const Player = () => {
-    const navigate = useNavigate();
     const [name, setName] = useState("");
     const [team, setTeam] = useState("");
     const { loading, setLoading } = useLoadingStore();
@@ -22,7 +21,7 @@ const Player = () => {
 
     useEffect(() => {
         // Initialize socket connection
-        socketRef.current = io("wss://server-broken-night-5589.fly.dev"); // Replace with your server URL
+        socketRef.current = io(import.meta.env.VITE_SOCKET_URL);
 
         // Cleanup socket connection on component unmount
         return () => {
