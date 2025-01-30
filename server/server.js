@@ -8,8 +8,9 @@ require('dotenv').config();
 const connectDB = require("./config/database");
 const lobbyRoutes = require("./routes/lobbyRoutes");
 const quizRoutes = require("./routes/quizRoutes");
-const { setupLobbyHandlers } = require("../socket/lobbyHandlers.js");
-const { setupQuizHandlers } = require("../socket/quizHandlers.js");
+const { setupQuizHandlers } = require("./socket/quizHandlers");
+const { setupLobbyHandlers } = require("./socket/lobbyHandlers");
+
 
 
 
