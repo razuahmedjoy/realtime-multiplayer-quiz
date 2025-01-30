@@ -15,53 +15,65 @@ const Player = () => {
     const [currentQuestion, setCurrentQuestion] = useState(null);
     const [quizEnded, setQuizEnded] = useState(false);
     const [rankings, setRankings] = useState([]);
+    const [timeLeft, setTimeLeft] = useState(0);
 
     const { lobbyId } = useParams();
     const socketRef = useRef(null);
+    const timerRef = useRef(null);
+
+
+
 
     useEffect(() => {
-        // Initialize socket connection
+        // Initialize socket connection only once
         socketRef.current = io(import.meta.env.VITE_SOCKET_URL);
+        console.log("✅ [Socket Connected]");
 
-        // Cleanup socket connection on component unmount
+        // Listen for updates to the player list
+        socketRef.current.on("updatePlayers", (updatedPlayers) => {
+            console.log("🔄 [updatePlayers] Received:", updatedPlayers);
+            setPlayers(updatedPlayers);
+            setLoading(false);
+        });
+
+        // Listen for new question event
+        socketRef.current.on("newQuestion", ({ currentQuestionIndex, quiz, timeLimit }) => {
+            if (quizEnded) {
+                console.warn("⚠️ Ignoring new question since quiz has ended.");
+                return;
+            }
+            setQuestion(quiz);
+            setCurrentQuestion(currentQuestionIndex);
+            setAnswer("");
+            setTimeLeft(timeLimit);
+
+            clearInterval(timerRef.current);
+            timerRef.current = setInterval(() => {
+                setTimeLeft((prev) => {
+                    if (prev <= 1) {
+                        clearInterval(timerRef.current);
+                        return 0;
+                    }
+                    return prev - 1;
+                });
+            }, 1000);
+        });
+
+        // Listen for quiz ended event
+        socketRef.current.on("quizEnded", (data) => {
+            console.log("🏁 [quizEnded] Received:", data);
+            clearInterval(timerRef.current); // Stop timer when quiz ends
+            setQuizEnded(true);
+            setRankings(data.rankings || []);
+        });
+
+        // Cleanup socket connection and intervals on component unmount
         return () => {
+            console.log("❌ [Socket Disconnected]");
             socketRef.current.disconnect();
+            clearInterval(timerRef.current);
         };
-    }, []);
-
-
-    useEffect(() => {
-        if (socketRef.current) {
-            // Listen for updates to the player list
-            socketRef.current.on("updatePlayers", (updatedPlayers) => {
-                setPlayers(updatedPlayers);
-                setLoading(false);
-            });
-
-            // Listen for "newQuestion" event
-            socketRef.current.on("newQuestion", ({ currentQuestionIndex, quiz }) => {
-                setQuestion(quiz);
-                setCurrentQuestion(currentQuestionIndex);
-                setAnswer("");
-            });
-
-          
-            socketRef.current.on("players", (data) => {
-                console.log(data);
-            })
-
-            socketRef.current.on("quizEnded", (data) => {
-                setQuizEnded(true);
-                setRankings(data.rankings);
-            });
-        
-
-            // Optional: Handle socket disconnect
-            socketRef.current.on("disconnect", () => {
-                console.log("Socket disconnected");
-            });
-        }
-    }, []);
+    }, [quizEnded]);
 
     const handleJoin = () => {
         if (!name || !team) {
@@ -70,6 +82,7 @@ const Player = () => {
         }
         setLoading(true);
 
+        console.log(`👤 [Joining Lobby] Name: ${name}, Team: ${team}, LobbyID: ${lobbyId}`);
 
         // Emit "join-room" event to the server
         socketRef.current.emit("join_lobby", { lobbyId, name, team });
@@ -82,6 +95,8 @@ const Player = () => {
 
         console.log(answer)
         // Emit "submitAnswer" event to the server
+        console.log(`✅ [Submitting Answer] PlayerID: ${socketRef.current.id}, Answer: ${answer}`);
+
         socketRef.current.emit("submitAnswer", { lobbyId: lobbyId, playerId: socketRef.current.id, answer, currentQuestion: (currentQuestion) });
         setAnswer(answer);
 
@@ -198,6 +213,9 @@ const Player = () => {
         return (
             <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
                 <h1 className="text-2xl font-bold mb-4">{question.question}</h1>
+                <div className="text-lg font-semibold text-red-500 mb-4">
+                    ⏳ Time Left: {timeLeft}s
+                </div>
                 <div className="grid grid-cols-2 gap-4">
                     {question.options.map((option, index) => (
                         <button
@@ -215,7 +233,7 @@ const Player = () => {
     };
 
     if (loading) return <LoadingSpinner />;
-    if(quizEnded) return renderRankings();
+    if (quizEnded) return renderRankings();
     if (question) return renderQuiz();
     if (players.length) return renderWaitingRoom();
     return renderJoinRoom();

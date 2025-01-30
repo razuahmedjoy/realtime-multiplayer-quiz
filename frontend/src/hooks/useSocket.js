@@ -7,10 +7,12 @@ const useSocket = () => {
     useEffect(() => {
         // Connect the socket
         socketRef.current = io(import.meta.env.VITE_SOCKET_URL);
+        console.log("✅ [Socket Connected]"); // Connection log
 
         return () => {
             // Cleanup on unmount
             if (socketRef.current) {
+                console.log("❌ [Socket Disconnected]");
                 socketRef.current.disconnect();
             }
         };
@@ -38,6 +40,7 @@ const useSocket = () => {
     };
 
     return {
+        socketRef,
         createRoom,
         on,
         off,
