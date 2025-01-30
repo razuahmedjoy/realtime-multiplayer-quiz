@@ -1,4 +1,4 @@
-const Lobby = require("../server/models/Lobby");
+const Lobby = require("../server/models/Lobby.js");
 
 
 const setupLobbyHandlers = (socket, io) => {
