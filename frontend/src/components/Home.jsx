@@ -47,7 +47,7 @@ const Home = () => {
 
     return (
         <div className="h-screen flex items-center justify-center flex-col space-y-20 bg-indigo-50">
-            <div className="w-2xl max-w-xl border p-4 rounded border-indigo-400 shadow-2xl shadow-violet-100 flex flex-col h-[650px] max-h-[450px] items-center bg-white">
+            <div className="max-w-md lg:w-2xl  border p-4 rounded border-indigo-400 shadow-2xl shadow-violet-100 flex flex-col h-[650px] max-h-[450px] items-center bg-white">
                 <h1 className="text-5xl text-indigo-600 font-medium">Trivia Game</h1>
                 <div className="flex gap-4 mt-20 mb-8">
                     <select className="p-3 border rounded border-indigo-300 cursor-pointer" onChange={(e) => setSelectedQuizId(e.target.value)}>

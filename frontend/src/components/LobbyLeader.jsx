@@ -1,8 +1,8 @@
 
-import { useEffect, useRef, useState } from "react";
+import useSocket from "@/hooks/useSocket";
+import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router";
 
-import { io } from "socket.io-client";
 
 
 const LobbyLeader = () => {
@@ -16,62 +16,35 @@ const LobbyLeader = () => {
 
     const data = location?.state?.data || null;
 
-    const socketRef = useRef(null);
+    const { createRoom, on, off, emit } = useSocket();
 
     useEffect(() => {
-        socketRef.current = io(import.meta.env.VITE_SOCKET_URL);
+        if (!lobbyId) return;
 
-        console.log("Lobby ID:", lobbyId);
+        createRoom(lobbyId);
 
-        socketRef.current.emit("create_room", { lobbyId }, (response) => {
-            console.log("Response from server:", response); // Debug server acknowledgment
-        });
-
-
-        // Listen for updates to the player list
-        socketRef.current.on("updatePlayers", (updatedPlayers) => {
-            setPlayers(updatedPlayers);
-        });
-
-        socketRef.current.on("quizEnded", (data) => {
+        on("updatePlayers", (updatedPlayers) => setPlayers(updatedPlayers));
+        on("newQuestion", ({ quiz }) => setQuestion(quiz));
+        on("quizEnded", (data) => {
             setQuizEnded(true);
-            // first set question null and then set rankings synchronously
             setQuestion(null);
             setRankings(data.rankings);
         });
-        socketRef.current.on("error", (data) => {
-            alert(data);
-        });
-
-        // Listen for "newQuestion" event
-        socketRef.current.on("newQuestion", ({ currentQuestionIndex, quiz }) => {
-            setQuestion(quiz);
-            
-
-        });
-
-
+        on("error", (data) => alert(data));
 
         return () => {
-
-            socketRef.current.off("updatePlayers");
-            socketRef.current.off("newQuestion");
-            socketRef.current.off("quizEnded");
-            socketRef.current.disconnect();
-
-
+            off("updatePlayers");
+            off("newQuestion");
+            off("quizEnded");
+            off("error");
         };
     }, [lobbyId]);
 
     const handleStartQuiz = () => {
+        emit("startQuiz", { lobbyId });
+    };
 
-        // Emit "start-quiz" event to the server
-        socketRef.current.emit("startQuiz", { lobbyId });
-
-
-    }
-
-    console.log(question)
+    // console.log(question)
 
 
     if (!data) return (
@@ -106,7 +79,7 @@ const LobbyLeader = () => {
 
     if (question) return renderQuiz();
 
-    if(quizEnded) return renderRankings();
+    if (quizEnded) return renderRankings();
 
     return (
         <div className="flex flex-col items-center justify-center h-screen">
