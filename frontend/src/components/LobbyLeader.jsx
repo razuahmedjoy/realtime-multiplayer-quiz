@@ -15,6 +15,12 @@ const LobbyLeader = () => {
 
     const { createRoom, on, off, emit } = useSocket();
     const data = location?.state?.data || null;
+   
+    const currentUrlWithProtocol = `${window.location.protocol}//${window.location.hostname}`;
+    const currentUrlWithProtocolAndPort = window.location.hostname === "localhost"
+        ? `${window.location.protocol}//${window.location.hostname}:${window.location.port}`
+        : currentUrlWithProtocol;
+
 
     useEffect(() => {
         if (!lobbyId) return;
@@ -109,9 +115,13 @@ const LobbyLeader = () => {
     return (
         <div className="flex flex-col items-center justify-center h-screen">
             {data && (
+                
                 <div className="flex flex-col items-center justify-center">
                     <h2 className="text-center font-bold mb-4 text-5xl text-indigo-400">Scan to Join Quiz Room</h2>
                     <img src={data?.qrCode} alt="Room QR Code" className="w-60 h-60" />
+                    <p className="text-centertext-sm mt-4">
+                        Or join at <strong><a className=" text-indigo-400 " href={`${currentUrlWithProtocolAndPort}/player/${lobbyId}`} target="_blank" rel="noopener noreferrer">{`${currentUrlWithProtocolAndPort}/player/${lobbyId}`}</a></strong>
+                    </p>
                     <div>
                         <div className="flex flex-wrap justify-center mt-4">
                             {players?.map((player, index) => (
