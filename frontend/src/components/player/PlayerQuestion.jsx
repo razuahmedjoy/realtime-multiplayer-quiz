@@ -21,7 +21,7 @@ const PlayerQuestion = ({ onAnswer }) => {
   }
 
   return (
-    <div className="mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 p-4">
+    <div className="mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 p-4 pb-20">
       <Timer key={question.endsAt} size="bar" endsAt={question.endsAt} timeLimit={question.timeLimit} clockOffset={clockOffset} />
       <p className="text-sm text-muted">
         Question {question.index + 1} of {question.total}

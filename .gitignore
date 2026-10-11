@@ -25,3 +25,9 @@ dist-ssr
 
 # Env files (use .env.example as a template)
 .env
+
+# Local Netlify folder
+.netlify
+
+# Private deployment notes (kept locally, not published)
+deploy/

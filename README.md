@@ -2,6 +2,10 @@
 
 A team trivia game you play live. The host opens a room on a big screen. Players scan a QR code to join from their phones and pick a team (Red, Blue, Green or Yellow). Then everyone answers questions in real time against the clock.
 
+**Live demo:** https://cool-play.netlify.app
+
+**To try it:** open the link on a laptop, choose a quiz and click **Create room**. Then scan the QR code with your phone (or open the join link in another browser tab) to join as a player, and click **Start quiz** on the laptop.
+
 ## Features
 
 ### For the host
@@ -161,19 +165,18 @@ To play with phones on the same Wi-Fi, open the frontend through your computer's
 
 ## Deployment
 
-**Backend → Railway** (Render or Fly.io work the same way; a `Dockerfile` and `fly.toml` are included)
-1. Create a new Railway service from this repo and set the **root directory** to `server`.
-2. Add `MONGO_URI`, `FRONTEND_URL` and, optionally, `CORS_ORIGIN`.
-3. Railway runs `npm start` (`node src/server.js`), and the server listens on `PORT`.
+The live version runs as:
 
-> Run **one instance** of the backend. Live games are kept in memory, so they can't be split across several servers. If the server restarts, games in progress are lost. Quizzes and finished results stay in MongoDB.
+| Part | Hosting |
+| --- | --- |
+| Frontend | **Netlify** (static Vite build, rebuilt on every push to `main`): https://cool-play.netlify.app |
+| Backend | **Ubuntu VPS**: Node 20 under **pm2**, behind **nginx** with a Let's Encrypt certificate and Cloudflare in front (WebSockets supported): https://quiz-api.razuahmedjoy.com |
+| Database | **MongoDB Atlas** |
 
-**Frontend → Vercel** (or Netlify)
-1. Import the repo and set the **root directory** to `frontend`. Vercel detects the Vite framework.
-2. Set `VITE_BACKEND_URL` and `VITE_SOCKET_URL` to your Railway URL.
-3. `frontend/vercel.json` (and `public/_redirects` for Netlify) makes routes like `/player/:id` work on refresh.
-
-The Socket.IO server can't run on Vercel: Vercel functions are short-lived and can't keep WebSocket connections open. So the backend goes on Railway, and only the frontend goes on Vercel.
+Notes:
+- **Run one backend instance.** Live games are kept in memory, so they can't be split across several servers, and a restart ends games in progress. Quizzes and finished results stay in MongoDB.
+- **The backend can't run on Netlify or Vercel**, because their functions are short-lived and can't keep WebSocket connections open. Any host with a long-running Node process works: a VPS, Railway, Render or Fly.io. A `Dockerfile` and `fly.toml` are included.
+- **The frontend URL needs to be known at build time.** Vite bakes `VITE_BACKEND_URL` and `VITE_SOCKET_URL` into the build. `netlify.toml` and `public/_redirects` make routes like `/player/:id` work on refresh.
 
 ## Quiz JSON format
 
