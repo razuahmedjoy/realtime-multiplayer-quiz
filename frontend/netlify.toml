@@ -1,0 +1,14 @@
+# Netlify build settings (deploy with the "frontend" folder as the base directory).
+# Set VITE_BACKEND_URL and VITE_SOCKET_URL in Netlify's environment variables.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Single-page app: let React Router handle every route (e.g. /player/:id on refresh)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

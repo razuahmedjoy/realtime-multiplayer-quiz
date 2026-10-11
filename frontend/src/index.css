@@ -1,56 +1,63 @@
 @import "tailwindcss";
 
+/* One light theme, solid colours only. Green is the single accent colour. */
 @theme {
-  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
-  --color-night-950: #0f0e24;
-  --color-night-900: #17153a;
-  --color-night-800: #221f4f;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-  --animate-pop: pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-  --animate-float: float 3s ease-in-out infinite;
+  --color-canvas: #f4f5f1; /* page background */
+  --color-surface: #ffffff; /* cards, inputs */
+  --color-subtle: #eceee8; /* hover, tracks, chips */
+  --color-line: #dde1d8; /* borders */
+  --color-ink: #1e2620; /* main text */
+  --color-muted: #66705f; /* secondary text */
 
-  @keyframes pop {
-    from { transform: scale(0.9); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
+  --color-brand: #2e7d4f;
+  --color-brand-strong: #24653f;
+  --color-brand-soft: #e4f1e8;
+
+  --color-danger: #b4442f;
+  --color-danger-soft: #f8e7e3;
+  --color-warn: #7a5a12;
+  --color-warn-soft: #fbf1dc;
+
+  /* Team colours are only used for small dots and labels */
+  --color-team-red: #c2553f;
+  --color-team-blue: #3c6ea8;
+  --color-team-green: #2e7d4f;
+  --color-team-yellow: #c49a2a;
 }
 
 @layer base {
-  html {
-    color-scheme: dark;
-  }
   body {
-    @apply min-h-dvh bg-night-950 font-sans text-white antialiased;
-    background-image: radial-gradient(70rem 40rem at 50% -20%, rgb(99 102 241 / 0.25), transparent 70%);
-    background-attachment: fixed;
+    @apply min-h-dvh bg-canvas font-sans text-ink antialiased;
   }
   button:not(:disabled) {
     cursor: pointer;
   }
+  ::selection {
+    @apply bg-brand-soft;
+  }
 }
 
 @utility card {
-  @apply rounded-2xl border border-white/10 bg-white/5 backdrop-blur;
+  @apply rounded-lg border border-line bg-surface;
 }
 @utility input {
-  @apply h-11 w-full rounded-xl border border-white/10 bg-white/5 px-4 text-white placeholder:text-white/30 focus:border-indigo-400 focus:outline-none;
+  @apply h-10 w-full rounded-md border border-line bg-surface px-3 text-ink placeholder:text-muted/70 focus:border-brand focus:outline-none;
 }
 @utility btn {
-  @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 font-semibold transition active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
+  @apply inline-flex h-10 items-center justify-center gap-2 rounded-md px-4 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50;
 }
 @utility btn-primary {
-  @apply btn bg-indigo-500 text-white shadow-lg shadow-indigo-500/30 hover:bg-indigo-400;
+  @apply btn bg-brand text-white hover:bg-brand-strong;
 }
 @utility btn-secondary {
-  @apply btn border border-white/10 bg-white/10 text-white hover:bg-white/15;
+  @apply btn border border-line bg-surface text-ink hover:bg-subtle;
 }
 @utility btn-ghost {
-  @apply btn text-white/70 hover:bg-white/10 hover:text-white;
+  @apply btn text-muted hover:bg-subtle hover:text-ink;
 }
 @utility btn-danger {
-  @apply btn border border-rose-500/30 bg-rose-500/10 text-rose-300 hover:bg-rose-500/20;
+  @apply btn border border-line bg-surface text-danger hover:bg-danger-soft;
 }

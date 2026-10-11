@@ -1,5 +1,4 @@
 import { Link, useParams } from 'react-router'
-import { Square } from 'lucide-react'
 import LoadingSpinner from '@/components/common/Loading'
 import Message from '@/components/common/Message'
 import { useLobby } from '@/hooks/useLobby'
@@ -38,12 +37,12 @@ const HostGamePage = () => {
     <div className="flex flex-1 flex-col">
       <ConnectionBanner />
       {inGame && (
-        <div className="flex items-center justify-between border-b border-white/5 px-4 py-2 text-sm text-white/60">
+        <div className="flex items-center justify-between border-b border-line bg-surface px-4 py-1.5 text-sm text-muted">
           <span>
             {state.roomName} · Question {state.currentQuestion + 1} of {state.totalQuestions}
           </span>
-          <button className="btn-ghost px-3 py-1.5 text-sm" onClick={() => window.confirm('End the quiz now?') && actions.end()}>
-            <Square className="size-3.5 fill-current" /> End quiz
+          <button className="btn-ghost h-8 px-3" onClick={() => window.confirm('End the quiz now?') && actions.end()}>
+            End quiz
           </button>
         </div>
       )}

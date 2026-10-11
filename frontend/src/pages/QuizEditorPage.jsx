@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router'
 import { toast } from 'sonner'
-import { Plus, Save } from 'lucide-react'
+import { Plus } from 'lucide-react'
 import LoadingSpinner from '@/components/common/Loading'
 import Message from '@/components/common/Message'
 import { useCreateQuiz, useQuiz, useUpdateQuiz } from '@/hooks/useQuizzes'
@@ -33,21 +33,23 @@ const QuizEditorForm = ({ quizId, initialForm }) => {
   }
 
   return (
-    <form onSubmit={handleSave} className="mx-auto w-full max-w-3xl px-4 pt-10 pb-28">
-      <h1 className="mb-6 text-3xl font-bold">{quizId ? 'Edit quiz' : 'Create a quiz'}</h1>
+    <form onSubmit={handleSave} className="mx-auto w-full max-w-3xl px-4 pt-8 pb-28">
+      <h1 className="mb-6 text-2xl font-semibold">{quizId ? 'Edit quiz' : 'Create a quiz'}</h1>
 
-      <div className="card mb-6 space-y-4 p-5">
+      <div className="card mb-4 space-y-4 p-4">
         <label className="block">
-          <span className="mb-1.5 block text-sm font-medium text-white/80">Quiz name</span>
+          <span className="mb-1.5 block text-sm font-medium">Quiz name</span>
           <input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} maxLength={80} className="input" placeholder="e.g. Office Trivia Night" />
         </label>
         <label className="block">
-          <span className="mb-1.5 block text-sm font-medium text-white/80">Description (optional)</span>
+          <span className="mb-1.5 block text-sm font-medium">
+            Description <span className="font-normal text-muted">(optional)</span>
+          </span>
           <input value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} maxLength={200} className="input" />
         </label>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-3">
         {form.questions.map((q, i) => (
           <QuestionCard
             key={i}
@@ -68,20 +70,22 @@ const QuizEditorForm = ({ quizId, initialForm }) => {
       <button
         type="button"
         onClick={() => setQuestions([...form.questions, emptyQuestion()])}
-        className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-white/15 py-4 font-medium text-white/60 hover:border-indigo-400 hover:text-white"
+        className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg border border-dashed border-line py-3 text-sm font-medium text-muted transition-colors hover:border-brand hover:text-brand"
       >
-        <Plus className="size-5" /> Add question
+        <Plus className="size-4" /> Add question
       </button>
 
-      <div className="fixed inset-x-0 bottom-0 border-t border-white/10 bg-night-950/90 backdrop-blur">
+      <div className="fixed inset-x-0 bottom-0 border-t border-line bg-surface">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-4 py-3">
-          <span className="text-sm text-white/50">{form.questions.length} questions</span>
+          <span className="text-sm text-muted">
+            {form.questions.length} question{form.questions.length !== 1 && 's'}
+          </span>
           <div className="flex gap-2">
             <button type="button" className="btn-ghost" onClick={() => navigate('/quizzes')}>
               Cancel
             </button>
             <button type="submit" className="btn-primary" disabled={saving}>
-              <Save className="size-4" /> {saving ? 'Saving...' : 'Save quiz'}
+              {saving ? 'Saving...' : 'Save quiz'}
             </button>
           </div>
         </div>

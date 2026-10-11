@@ -56,11 +56,11 @@ const QuizListPage = () => {
   if (error) return <Message title="Couldn't load quizzes" text={error.message} />
 
   return (
-    <div className="mx-auto w-full max-w-5xl px-4 py-10">
-      <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+    <div className="mx-auto w-full max-w-5xl px-4 py-8">
+      <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold">Quizzes</h1>
-          <p className="text-white/50">Built-in question sets and the quizzes you&apos;ve created or imported.</p>
+          <h1 className="text-2xl font-semibold">Quizzes</h1>
+          <p className="mt-1 text-muted">Built-in question sets and the quizzes you&apos;ve created or imported.</p>
         </div>
         <div className="flex gap-2">
           <input ref={fileInput} type="file" accept=".json,application/json" className="hidden" onChange={handleImport} />
@@ -73,8 +73,8 @@ const QuizListPage = () => {
         </div>
       </div>
 
-      <div className="card divide-y divide-white/5">
-        {quizzes.length === 0 && <p className="p-8 text-center text-white/50">No quizzes yet.</p>}
+      <div className="card divide-y divide-line">
+        {quizzes.length === 0 && <p className="p-8 text-center text-muted">No quizzes yet.</p>}
         {quizzes.map((quiz) => (
           <QuizRow
             key={quiz._id}

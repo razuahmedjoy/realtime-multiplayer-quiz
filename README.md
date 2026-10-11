@@ -19,7 +19,7 @@ A team trivia game you play live. The host opens a room on a big screen. Players
 
 ### For players
 - Join by QR code or link with a name and a team. No sign-up.
-- Mobile-first answer buttons. Each answer has a colour and a shape, so you can tell them apart without colour.
+- Mobile-first answer buttons, labelled A–D.
 - After each question you see whether you were right, the points you earned, the correct answer, your rank and the team standings.
 - **Refresh-safe.** If you reload the page or lose connection, you rejoin automatically and keep your score.
 

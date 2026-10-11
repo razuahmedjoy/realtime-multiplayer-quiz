@@ -1,6 +1,6 @@
 import { CheckCircle2, Clock, XCircle } from 'lucide-react'
 import TeamScores from '@/components/common/TeamScores'
-import { cn, ordinal } from '@/utils/helpers'
+import { ordinal } from '@/utils/helpers'
 import { useGameStore } from '@/store/gameStore'
 
 const PlayerReveal = ({ me }) => {
@@ -8,28 +8,28 @@ const PlayerReveal = ({ me }) => {
   const result = reveal.results[me.playerId] || { answer: null, correct: false, points: 0 }
   const rank = reveal.leaderboard.find((p) => p.playerId === me.playerId)?.rank
 
+  const status = result.correct
+    ? { Icon: CheckCircle2, color: 'text-brand', title: 'Correct' }
+    : result.answer
+      ? { Icon: XCircle, color: 'text-danger', title: 'Wrong answer' }
+      : { Icon: Clock, color: 'text-muted', title: "Time's up" }
+
   return (
-    <div className={cn('flex flex-1 flex-col items-center justify-center gap-5 p-6 text-center', result.correct ? 'bg-emerald-500/10' : 'bg-rose-500/10')}>
-      <div className="animate-pop">
-        {result.correct ? (
-          <CheckCircle2 className="mx-auto size-20 text-emerald-400" />
-        ) : result.answer ? (
-          <XCircle className="mx-auto size-20 text-rose-400" />
-        ) : (
-          <Clock className="mx-auto size-20 text-white/40" />
+    <div className="flex flex-1 flex-col items-center justify-center gap-5 p-6 text-center">
+      <div>
+        <status.Icon className={`mx-auto size-12 ${status.color}`} strokeWidth={1.75} />
+        <h2 className="mt-3 text-2xl font-semibold">{status.title}</h2>
+        {result.correct && <p className="mt-1 font-mono text-lg text-brand">+{result.points} points</p>}
+        {!result.correct && (
+          <p className="mt-2 text-sm text-muted">
+            Correct answer: <span className="font-medium text-ink">{reveal.correctAnswer}</span>
+          </p>
         )}
-        <h2 className="mt-3 text-3xl font-bold">{result.correct ? 'Correct!' : result.answer ? 'Wrong answer' : "Time's up!"}</h2>
-        {result.correct && <p className="text-2xl font-bold text-emerald-300">+{result.points} points</p>}
       </div>
-      {!result.correct && (
-        <p className="text-white/70">
-          Correct answer: <span className="font-semibold text-white">{reveal.correctAnswer}</span>
-        </p>
-      )}
       <div className="card w-full max-w-sm space-y-4 p-4 text-left">
         {rank && (
-          <p className="text-center">
-            You&apos;re in <span className="font-bold">{ordinal(rank)}</span> place
+          <p className="text-sm">
+            You&apos;re in <span className="font-semibold">{ordinal(rank)}</span> place
           </p>
         )}
         <TeamScores teams={reveal.teamScores} highlightTeam={me.team} />

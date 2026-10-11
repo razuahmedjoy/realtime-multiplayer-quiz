@@ -9,20 +9,21 @@ const PlayerWaiting = ({ me }) => {
   const style = TEAMS[me.team]
 
   return (
-    <div className="flex flex-1 flex-col items-center justify-center gap-5 p-6 text-center">
-      <span className={cn('grid size-24 animate-float place-items-center rounded-full text-4xl font-bold', style.bg)}>{me.name[0].toUpperCase()}</span>
+    <div className="flex flex-1 flex-col items-center justify-center gap-6 p-6 text-center">
       <div>
-        <p className="flex items-center justify-center gap-2 font-semibold text-emerald-300">
-          <CheckCircle2 className="size-5" /> You&apos;re in!
+        <p className="flex items-center justify-center gap-2 text-sm font-medium text-brand">
+          <CheckCircle2 className="size-4" /> You&apos;re in
         </p>
-        <h1 className="mt-2 text-2xl font-bold">Waiting for the host to start...</h1>
-        <p className="mt-1 text-white/50">{players.length} players in the room</p>
+        <h1 className="mt-2 text-xl font-semibold">Waiting for the host to start</h1>
+        <p className="mt-1 text-sm text-muted">{players.length} players in the room</p>
       </div>
-      <div className="card w-full max-w-sm p-4">
-        <p className={cn('mb-2 text-sm font-semibold', style.text)}>Your team: {style.label}</p>
-        <div className="flex flex-wrap justify-center gap-2">
+      <div className="card w-full max-w-sm p-4 text-left">
+        <p className="mb-3 flex items-center gap-2 text-sm font-medium">
+          <span className={cn('size-2 rounded-full', style.dot)} /> {style.label} team
+        </p>
+        <div className="flex flex-wrap gap-1.5">
           {teammates.map((p) => (
-            <span key={p.playerId} className={cn('rounded-full px-3 py-1 text-sm', p.playerId === me.playerId ? style.bg : 'bg-white/10')}>
+            <span key={p.playerId} className={cn('rounded px-2 py-1 text-sm', p.playerId === me.playerId ? 'bg-brand-soft text-brand-strong' : 'bg-subtle')}>
               {p.name}
             </span>
           ))}

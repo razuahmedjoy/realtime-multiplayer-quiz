@@ -1,32 +1,37 @@
-import { Check, X } from 'lucide-react'
-import { ANSWER_STYLES } from '@/constants'
+import { Check } from 'lucide-react'
+import { ANSWER_LETTERS } from '@/constants'
 import { cn } from '@/utils/helpers'
 
+const STATE_STYLES = {
+  idle: { box: 'border-line bg-surface text-ink', letter: 'bg-subtle text-muted' },
+  selected: { box: 'border-brand bg-brand-soft text-ink', letter: 'bg-brand text-white' },
+  correct: { box: 'border-brand bg-brand text-white', letter: 'bg-brand-strong text-white' },
+  wrong: { box: 'border-line bg-surface text-muted', letter: 'bg-subtle text-muted' },
+}
+
 /**
- * One answer option. `state`: 'idle' | 'selected' | 'correct' | 'wrong'
+ * One answer option, labelled A-D. `state`: 'idle' | 'selected' | 'correct' | 'wrong'
  */
-const AnswerButton = ({ index, text, state = 'idle', count, onClick, disabled }) => {
-  const { bg, Icon } = ANSWER_STYLES[index % ANSWER_STYLES.length]
+const AnswerButton = ({ index, text, state = 'idle', count, onClick, disabled, size = 'md' }) => {
+  const styles = STATE_STYLES[state]
+  const clickable = onClick && !disabled
   return (
     <button
       type="button"
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        'flex min-h-20 w-full items-center gap-3 rounded-2xl px-5 py-4 text-left text-lg font-semibold text-white shadow-lg transition',
-        bg,
-        onClick && !disabled && 'hover:brightness-110 active:scale-[0.98]',
-        state === 'selected' && 'ring-4 ring-white/80 ring-offset-2 ring-offset-night-950',
-        state === 'correct' && 'ring-4 ring-emerald-300 ring-offset-2 ring-offset-night-950',
-        state === 'wrong' && 'opacity-40',
+        'flex w-full items-center gap-3 rounded-lg border px-3 text-left font-medium transition-colors',
+        size === 'lg' ? 'min-h-16 py-3 text-lg' : 'min-h-14 py-2.5 text-base',
+        styles.box,
+        clickable && 'hover:border-brand hover:bg-brand-soft',
         disabled && 'cursor-default',
       )}
     >
-      <Icon className="size-6 shrink-0 fill-white/90 text-white/90" />
+      <span className={cn('grid size-8 shrink-0 place-items-center rounded-md text-sm font-semibold', styles.letter)}>{ANSWER_LETTERS[index]}</span>
       <span className="flex-1 break-words">{text}</span>
-      {count !== undefined && <span className="rounded-lg bg-black/20 px-2.5 py-0.5 tabular-nums">{count}</span>}
-      {state === 'correct' && <Check className="size-7 shrink-0" strokeWidth={3} />}
-      {state === 'wrong' && <X className="size-6 shrink-0" />}
+      {count !== undefined && <span className="font-mono text-sm tabular-nums">{count}</span>}
+      {state === 'correct' && <Check className="size-5 shrink-0" strokeWidth={2.5} />}
     </button>
   )
 }

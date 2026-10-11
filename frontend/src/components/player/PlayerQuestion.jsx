@@ -1,7 +1,6 @@
 import Timer from '@/components/common/Timer'
 import AnswerButton from '@/components/common/AnswerButton'
-import { ANSWER_STYLES } from '@/constants'
-import { cn } from '@/utils/helpers'
+import { ANSWER_LETTERS } from '@/constants'
 import { useGameStore } from '@/store/gameStore'
 
 const PlayerQuestion = ({ onAnswer }) => {
@@ -10,28 +9,27 @@ const PlayerQuestion = ({ onAnswer }) => {
   const clockOffset = useGameStore((s) => s.clockOffset)
 
   if (myAnswer) {
-    const { bg, Icon } = ANSWER_STYLES[question.options.indexOf(myAnswer)] || ANSWER_STYLES[0]
     return (
-      <div className="flex flex-1 animate-pop flex-col items-center justify-center gap-4 p-6 text-center">
-        <span className={cn('grid size-20 place-items-center rounded-2xl', bg)}>
-          <Icon className="size-10 fill-white text-white" />
+      <div className="flex flex-1 flex-col items-center justify-center gap-3 p-6 text-center">
+        <span className="grid size-14 place-items-center rounded-lg bg-brand text-2xl font-semibold text-white">
+          {ANSWER_LETTERS[question.options.indexOf(myAnswer)]}
         </span>
-        <h2 className="text-2xl font-bold">Answer locked in!</h2>
-        <p className="text-white/50">&ldquo;{myAnswer}&rdquo; · waiting for the others</p>
+        <h2 className="text-xl font-semibold">Answer locked in</h2>
+        <p className="text-sm text-muted">&ldquo;{myAnswer}&rdquo; · waiting for the others</p>
       </div>
     )
   }
 
   return (
-    <div className="flex flex-1 flex-col gap-4 p-4">
+    <div className="mx-auto flex w-full max-w-lg flex-1 flex-col gap-4 p-4">
       <Timer key={question.endsAt} size="bar" endsAt={question.endsAt} timeLimit={question.timeLimit} clockOffset={clockOffset} />
-      <p className="text-center text-sm text-white/50">
+      <p className="text-sm text-muted">
         Question {question.index + 1} of {question.total}
       </p>
-      <div className="flex flex-1 items-center justify-center">
-        <h2 className="text-center text-2xl font-bold">{question.question}</h2>
+      <div className="flex flex-1 items-center">
+        <h2 className="text-2xl leading-snug font-semibold">{question.question}</h2>
       </div>
-      <div className="grid gap-3">
+      <div className="grid gap-2">
         {question.options.map((option, i) => (
           <AnswerButton key={option} index={i} text={option} onClick={() => onAnswer(option)} />
         ))}

@@ -11,16 +11,13 @@ const QuizPicker = ({ quizzes, selectedId, onSelect }) => (
           type="button"
           key={quiz._id}
           onClick={() => onSelect(quiz._id)}
-          className={cn('card relative p-4 text-left transition hover:border-white/25', selected && 'border-indigo-400 bg-indigo-500/15 hover:border-indigo-400')}
+          aria-pressed={selected}
+          className={cn('card relative p-4 text-left transition-colors hover:border-muted/50', selected && 'border-brand bg-brand-soft hover:border-brand')}
         >
-          {selected && (
-            <span className="absolute top-3 right-3 grid size-6 place-items-center rounded-full bg-indigo-500">
-              <Check className="size-4" />
-            </span>
-          )}
-          <p className="pr-8 font-semibold">{quiz.name}</p>
-          <p className="mt-1 line-clamp-2 text-sm text-white/50">{quiz.description || 'No description'}</p>
-          <p className="mt-3 text-xs text-white/40">
+          {selected && <Check className="absolute top-4 right-4 size-4 text-brand" strokeWidth={2.5} />}
+          <p className="pr-6 font-medium">{quiz.name}</p>
+          <p className="mt-1 line-clamp-2 text-sm text-muted">{quiz.description || 'No description'}</p>
+          <p className="mt-3 text-xs text-muted">
             {quiz.questionCount} questions · {quiz.isBuiltIn ? 'Built-in' : 'Custom'}
           </p>
         </button>

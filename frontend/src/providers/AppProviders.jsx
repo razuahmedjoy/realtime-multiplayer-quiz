@@ -7,7 +7,7 @@ const AppProviders = ({ children }) => (
   <QueryClientProvider client={queryClient}>
     <BrowserRouter>
       {children}
-      <Toaster theme="dark" position="top-center" richColors />
+      <Toaster theme="light" position="top-center" />
     </BrowserRouter>
   </QueryClientProvider>
 )

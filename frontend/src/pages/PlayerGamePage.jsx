@@ -1,4 +1,5 @@
 import { useParams } from 'react-router'
+import { Flag, UserX } from 'lucide-react'
 import LoadingSpinner from '@/components/common/Loading'
 import Message from '@/components/common/Message'
 import { TEAMS } from '@/constants'
@@ -24,7 +25,7 @@ const PlayerGamePage = () => {
   const hasReveal = useGameStore((s) => !!s.reveal)
   const hasResults = useGameStore((s) => !!s.results)
 
-  if (kicked) return <Message emoji="👋" title="You were removed from the room" text="The host removed you from this game." />
+  if (kicked) return <Message icon={UserX} title="You were removed from the room" text="The host removed you from this game." />
   if (lobbyError) return <Message title="Room not found" text="This room doesn't exist or has expired. Ask the host for a new link." />
   if (!lobby) return <LoadingSpinner label="Finding room..." />
 
@@ -32,7 +33,7 @@ const PlayerGamePage = () => {
 
   if (!me) {
     if (playerId) return <LoadingSpinner label="Reconnecting..." />
-    if (lobby.status === 'finished' || state?.status === 'finished') return <Message emoji="🏁" title="This game has finished" text="Ask the host to start a new one." />
+    if (lobby.status === 'finished' || state?.status === 'finished') return <Message icon={Flag} title="This game has finished" text="Ask the host to start a new one." />
     return (
       <div className="flex flex-1 flex-col p-4">
         <JoinForm lobby={lobby} onJoin={join} joining={joining || !connected} />
@@ -43,11 +44,11 @@ const PlayerGamePage = () => {
   return (
     <div className="flex flex-1 flex-col">
       <ConnectionBanner />
-      <div className="flex items-center justify-between border-b border-white/5 px-4 py-2 text-sm">
-        <span className="flex items-center gap-2 font-semibold">
-          <span className={cn('size-3 rounded-full', TEAMS[me.team].bg)} /> {me.name}
+      <div className="flex items-center justify-between border-b border-line bg-surface px-4 py-2 text-sm">
+        <span className="flex items-center gap-2 font-medium">
+          <span className={cn('size-2 rounded-full', TEAMS[me.team].dot)} /> {me.name}
         </span>
-        <span className="font-bold tabular-nums">{me.score} pts</span>
+        <span className="font-mono tabular-nums">{me.score} pts</span>
       </div>
 
       {state.status === 'waiting' && <PlayerWaiting me={me} />}
