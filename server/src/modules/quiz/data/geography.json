@@ -1,0 +1,107 @@
+{
+  "name": "World Geography",
+  "description": "Capitals, countries and landmarks from around the globe.",
+  "category": "World Geography",
+  "questions": [
+    {
+      "question": "What is the capital of Australia?",
+      "options": [
+        "Sydney",
+        "Melbourne",
+        "Canberra",
+        "Perth"
+      ],
+      "answer": "Canberra"
+    },
+    {
+      "question": "Which country has the largest land area?",
+      "options": [
+        "Canada",
+        "China",
+        "United States",
+        "Russia"
+      ],
+      "answer": "Russia"
+    },
+    {
+      "question": "Mount Everest sits on the border of Nepal and which country?",
+      "options": [
+        "India",
+        "China",
+        "Bhutan",
+        "Pakistan"
+      ],
+      "answer": "China"
+    },
+    {
+      "question": "What is the capital of Canada?",
+      "options": [
+        "Toronto",
+        "Vancouver",
+        "Ottawa",
+        "Montreal"
+      ],
+      "answer": "Ottawa"
+    },
+    {
+      "question": "What is the largest hot desert in the world?",
+      "options": [
+        "Sahara",
+        "Gobi",
+        "Kalahari",
+        "Arabian"
+      ],
+      "answer": "Sahara"
+    },
+    {
+      "question": "In which country is the city of Marrakesh?",
+      "options": [
+        "Egypt",
+        "Morocco",
+        "Tunisia",
+        "Algeria"
+      ],
+      "answer": "Morocco"
+    },
+    {
+      "question": "What is the smallest country in the world by area?",
+      "options": [
+        "Monaco",
+        "Vatican City",
+        "San Marino",
+        "Liechtenstein"
+      ],
+      "answer": "Vatican City"
+    },
+    {
+      "question": "Which U.S. state is the largest by area?",
+      "options": [
+        "Texas",
+        "California",
+        "Alaska",
+        "Montana"
+      ],
+      "answer": "Alaska"
+    },
+    {
+      "question": "Which river flows through Baghdad?",
+      "options": [
+        "Tigris",
+        "Euphrates",
+        "Nile",
+        "Jordan"
+      ],
+      "answer": "Tigris"
+    },
+    {
+      "question": "What is the capital of Bangladesh?",
+      "options": [
+        "Chattogram",
+        "Dhaka",
+        "Khulna",
+        "Sylhet"
+      ],
+      "answer": "Dhaka"
+    }
+  ]
+}

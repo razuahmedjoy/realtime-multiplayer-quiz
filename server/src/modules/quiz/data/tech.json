@@ -1,0 +1,107 @@
+{
+  "name": "Tech & Programming",
+  "description": "Bits, bytes and the people who built the internet.",
+  "category": "Tech & Programming",
+  "questions": [
+    {
+      "question": "What does HTML stand for?",
+      "options": [
+        "HyperText Markup Language",
+        "High Transfer Machine Language",
+        "HyperTool Multi Language",
+        "Home Text Markup Logic"
+      ],
+      "answer": "HyperText Markup Language"
+    },
+    {
+      "question": "Which company originally created JavaScript?",
+      "options": [
+        "Microsoft",
+        "Netscape",
+        "Sun Microsystems",
+        "Oracle"
+      ],
+      "answer": "Netscape"
+    },
+    {
+      "question": "What does CPU stand for?",
+      "options": [
+        "Central Processing Unit",
+        "Computer Personal Unit",
+        "Core Power Utility",
+        "Central Program Uplink"
+      ],
+      "answer": "Central Processing Unit"
+    },
+    {
+      "question": "Which data structure works on a Last-In, First-Out basis?",
+      "options": [
+        "Queue",
+        "Stack",
+        "Tree",
+        "Graph"
+      ],
+      "answer": "Stack"
+    },
+    {
+      "question": "What is the decimal number 5 in binary?",
+      "options": [
+        "100",
+        "101",
+        "110",
+        "111"
+      ],
+      "answer": "101"
+    },
+    {
+      "question": "Which HTTP status code means \"Not Found\"?",
+      "options": [
+        "200",
+        "301",
+        "404",
+        "500"
+      ],
+      "answer": "404"
+    },
+    {
+      "question": "Who created the Linux kernel?",
+      "options": [
+        "Linus Torvalds",
+        "Richard Stallman",
+        "Dennis Ritchie",
+        "Ken Thompson"
+      ],
+      "answer": "Linus Torvalds"
+    },
+    {
+      "question": "Which Git command copies a remote repository to your machine?",
+      "options": [
+        "git fork",
+        "git clone",
+        "git copy",
+        "git init"
+      ],
+      "answer": "git clone"
+    },
+    {
+      "question": "What does SQL stand for?",
+      "options": [
+        "Structured Query Language",
+        "Simple Question Logic",
+        "Sequential Query Lookup",
+        "Server Quality Language"
+      ],
+      "answer": "Structured Query Language"
+    },
+    {
+      "question": "How many bits are in a byte?",
+      "options": [
+        "4",
+        "8",
+        "16",
+        "32"
+      ],
+      "answer": "8"
+    }
+  ]
+}

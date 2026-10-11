@@ -1,0 +1,107 @@
+{
+  "name": "Movies & Pop Culture",
+  "description": "Blockbusters, bands, games and TV favourites.",
+  "category": "Movies & Pop Culture",
+  "questions": [
+    {
+      "question": "Which film series is known for the line \"May the Force be with you\"?",
+      "options": [
+        "Star Trek",
+        "Star Wars",
+        "Dune",
+        "Avatar"
+      ],
+      "answer": "Star Wars"
+    },
+    {
+      "question": "Who directed Jurassic Park (1993)?",
+      "options": [
+        "James Cameron",
+        "Steven Spielberg",
+        "George Lucas",
+        "Ridley Scott"
+      ],
+      "answer": "Steven Spielberg"
+    },
+    {
+      "question": "What is the name of the wizarding school in Harry Potter?",
+      "options": [
+        "Hogwarts",
+        "Durmstrang",
+        "Beauxbatons",
+        "Ilvermorny"
+      ],
+      "answer": "Hogwarts"
+    },
+    {
+      "question": "Which band recorded \"Bohemian Rhapsody\"?",
+      "options": [
+        "The Beatles",
+        "Queen",
+        "Led Zeppelin",
+        "Pink Floyd"
+      ],
+      "answer": "Queen"
+    },
+    {
+      "question": "In Finding Nemo, what kind of fish is Nemo?",
+      "options": [
+        "Clownfish",
+        "Blue tang",
+        "Goldfish",
+        "Pufferfish"
+      ],
+      "answer": "Clownfish"
+    },
+    {
+      "question": "Which superhero is known as the \"Man of Steel\"?",
+      "options": [
+        "Batman",
+        "Superman",
+        "Iron Man",
+        "Captain America"
+      ],
+      "answer": "Superman"
+    },
+    {
+      "question": "Which animated film features the song \"Let It Go\"?",
+      "options": [
+        "Frozen",
+        "Moana",
+        "Tangled",
+        "Encanto"
+      ],
+      "answer": "Frozen"
+    },
+    {
+      "question": "Who played Jack Dawson in Titanic (1997)?",
+      "options": [
+        "Brad Pitt",
+        "Leonardo DiCaprio",
+        "Matt Damon",
+        "Johnny Depp"
+      ],
+      "answer": "Leonardo DiCaprio"
+    },
+    {
+      "question": "Which TV series is set in Hawkins, Indiana?",
+      "options": [
+        "Stranger Things",
+        "Riverdale",
+        "Dark",
+        "Twin Peaks"
+      ],
+      "answer": "Stranger Things"
+    },
+    {
+      "question": "What is the name of Mario's brother in Nintendo games?",
+      "options": [
+        "Wario",
+        "Luigi",
+        "Toad",
+        "Yoshi"
+      ],
+      "answer": "Luigi"
+    }
+  ]
+}

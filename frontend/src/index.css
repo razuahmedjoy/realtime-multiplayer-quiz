@@ -1,13 +1,56 @@
 @import "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@layer base {
-  :root {
-    --radius: 0.5rem
+
+@theme {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --color-night-950: #0f0e24;
+  --color-night-900: #17153a;
+  --color-night-800: #221f4f;
+
+  --animate-pop: pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  --animate-float: float 3s ease-in-out infinite;
+
+  @keyframes pop {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
   }
 }
 
-button{
-  cursor: pointer;
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    @apply min-h-dvh bg-night-950 font-sans text-white antialiased;
+    background-image: radial-gradient(70rem 40rem at 50% -20%, rgb(99 102 241 / 0.25), transparent 70%);
+    background-attachment: fixed;
+  }
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@utility card {
+  @apply rounded-2xl border border-white/10 bg-white/5 backdrop-blur;
+}
+@utility input {
+  @apply h-11 w-full rounded-xl border border-white/10 bg-white/5 px-4 text-white placeholder:text-white/30 focus:border-indigo-400 focus:outline-none;
+}
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 font-semibold transition active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
+}
+@utility btn-primary {
+  @apply btn bg-indigo-500 text-white shadow-lg shadow-indigo-500/30 hover:bg-indigo-400;
+}
+@utility btn-secondary {
+  @apply btn border border-white/10 bg-white/10 text-white hover:bg-white/15;
+}
+@utility btn-ghost {
+  @apply btn text-white/70 hover:bg-white/10 hover:text-white;
+}
+@utility btn-danger {
+  @apply btn border border-rose-500/30 bg-rose-500/10 text-rose-300 hover:bg-rose-500/20;
 }

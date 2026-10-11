@@ -1,0 +1,107 @@
+{
+  "name": "Science & Nature",
+  "description": "Atoms, animals and the universe — test your inner scientist.",
+  "category": "Science & Nature",
+  "questions": [
+    {
+      "question": "What is the chemical symbol for gold?",
+      "options": [
+        "Go",
+        "Gd",
+        "Au",
+        "Ag"
+      ],
+      "answer": "Au"
+    },
+    {
+      "question": "Which gas do plants absorb from the air for photosynthesis?",
+      "options": [
+        "Oxygen",
+        "Nitrogen",
+        "Carbon dioxide",
+        "Hydrogen"
+      ],
+      "answer": "Carbon dioxide"
+    },
+    {
+      "question": "What is the largest organ of the human body?",
+      "options": [
+        "Liver",
+        "Skin",
+        "Lungs",
+        "Brain"
+      ],
+      "answer": "Skin"
+    },
+    {
+      "question": "How many bones are in the adult human body?",
+      "options": [
+        "186",
+        "206",
+        "226",
+        "246"
+      ],
+      "answer": "206"
+    },
+    {
+      "question": "Which planet is known as the Red Planet?",
+      "options": [
+        "Jupiter",
+        "Venus",
+        "Mars",
+        "Saturn"
+      ],
+      "answer": "Mars"
+    },
+    {
+      "question": "Roughly how fast does light travel in a vacuum?",
+      "options": [
+        "30,000 km/s",
+        "150,000 km/s",
+        "300,000 km/s",
+        "1,000,000 km/s"
+      ],
+      "answer": "300,000 km/s"
+    },
+    {
+      "question": "Which part of a eukaryotic cell holds most of its DNA?",
+      "options": [
+        "Nucleus",
+        "Ribosome",
+        "Cell membrane",
+        "Cytoplasm"
+      ],
+      "answer": "Nucleus"
+    },
+    {
+      "question": "What is the most abundant gas in Earth's atmosphere?",
+      "options": [
+        "Oxygen",
+        "Nitrogen",
+        "Argon",
+        "Carbon dioxide"
+      ],
+      "answer": "Nitrogen"
+    },
+    {
+      "question": "What is the largest mammal on Earth?",
+      "options": [
+        "African elephant",
+        "Blue whale",
+        "Giraffe",
+        "Sperm whale"
+      ],
+      "answer": "Blue whale"
+    },
+    {
+      "question": "At what temperature (°C) does water boil at sea level?",
+      "options": [
+        "90",
+        "100",
+        "110",
+        "120"
+      ],
+      "answer": "100"
+    }
+  ]
+}

@@ -1,30 +1,24 @@
-import { Route, Routes } from "react-router"
-import Home from "./components/Home"
-import LobbyLeader from "./components/LobbyLeader"
-import Player from "./components/Player"
-import Layout from "./Layout/Layout"
-import WaitingRoom from "./components/WaitingRoom"
+import { Route, Routes } from 'react-router'
+import MainLayout from '@/layouts/MainLayout'
+import HomePage from '@/pages/HomePage'
+import QuizListPage from '@/pages/QuizListPage'
+import QuizEditorPage from '@/pages/QuizEditorPage'
+import HostGamePage from '@/pages/HostGamePage'
+import PlayerGamePage from '@/pages/PlayerGamePage'
+import NotFoundPage from '@/pages/NotFoundPage'
 
-function App() {
-
-
-
-  return (
-    <>
-   
-
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="lobby-leader/:lobbyId" element={<LobbyLeader />} />
-          <Route path="player/:lobbyId" element={<Player />} />
-          <Route path="waiting-room/:lobbyId" element={<WaitingRoom />} />
-
-        </Route>
-
-      </Routes>
-    </>
-  )
-}
+const App = () => (
+  <Routes>
+    <Route path="/" element={<MainLayout />}>
+      <Route index element={<HomePage />} />
+      <Route path="quizzes" element={<QuizListPage />} />
+      <Route path="quizzes/new" element={<QuizEditorPage key="new" />} />
+      <Route path="quizzes/:quizId/edit" element={<QuizEditorPage key="edit" />} />
+      <Route path="lobby-leader/:lobbyId" element={<HostGamePage />} />
+      <Route path="player/:lobbyId" element={<PlayerGamePage />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Route>
+  </Routes>
+)
 
 export default App

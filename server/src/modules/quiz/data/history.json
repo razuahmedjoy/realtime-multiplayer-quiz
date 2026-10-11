@@ -1,0 +1,107 @@
+{
+  "name": "History",
+  "description": "Empires, inventions and the moments that shaped the world.",
+  "category": "History",
+  "questions": [
+    {
+      "question": "In which year did World War II end?",
+      "options": [
+        "1943",
+        "1944",
+        "1945",
+        "1946"
+      ],
+      "answer": "1945"
+    },
+    {
+      "question": "Who was the first President of the United States?",
+      "options": [
+        "Thomas Jefferson",
+        "George Washington",
+        "John Adams",
+        "Abraham Lincoln"
+      ],
+      "answer": "George Washington"
+    },
+    {
+      "question": "Which civilization built Machu Picchu?",
+      "options": [
+        "Aztec",
+        "Maya",
+        "Inca",
+        "Olmec"
+      ],
+      "answer": "Inca"
+    },
+    {
+      "question": "In which year did the Berlin Wall fall?",
+      "options": [
+        "1987",
+        "1989",
+        "1991",
+        "1993"
+      ],
+      "answer": "1989"
+    },
+    {
+      "question": "Who was the first person to walk on the Moon?",
+      "options": [
+        "Buzz Aldrin",
+        "Yuri Gagarin",
+        "Neil Armstrong",
+        "Michael Collins"
+      ],
+      "answer": "Neil Armstrong"
+    },
+    {
+      "question": "Genghis Khan founded which empire?",
+      "options": [
+        "Ottoman Empire",
+        "Mongol Empire",
+        "Roman Empire",
+        "Persian Empire"
+      ],
+      "answer": "Mongol Empire"
+    },
+    {
+      "question": "In which year did the Titanic sink?",
+      "options": [
+        "1905",
+        "1912",
+        "1918",
+        "1923"
+      ],
+      "answer": "1912"
+    },
+    {
+      "question": "In which country did the Industrial Revolution begin?",
+      "options": [
+        "France",
+        "Germany",
+        "Great Britain",
+        "United States"
+      ],
+      "answer": "Great Britain"
+    },
+    {
+      "question": "Who was the principal author of the U.S. Declaration of Independence?",
+      "options": [
+        "Thomas Jefferson",
+        "Benjamin Franklin",
+        "John Adams",
+        "James Madison"
+      ],
+      "answer": "Thomas Jefferson"
+    },
+    {
+      "question": "Whose nearly intact tomb was discovered in Egypt in 1922?",
+      "options": [
+        "Ramses II",
+        "Tutankhamun",
+        "Khufu",
+        "Akhenaten"
+      ],
+      "answer": "Tutankhamun"
+    }
+  ]
+}

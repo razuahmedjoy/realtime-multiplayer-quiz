@@ -1,0 +1,107 @@
+{
+  "name": "Sports",
+  "description": "From the pitch to the court — how well do you know the game?",
+  "category": "Sports",
+  "questions": [
+    {
+      "question": "How many players does a soccer team have on the field?",
+      "options": [
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "answer": "11"
+    },
+    {
+      "question": "Which country won the 2022 FIFA World Cup?",
+      "options": [
+        "France",
+        "Argentina",
+        "Brazil",
+        "Croatia"
+      ],
+      "answer": "Argentina"
+    },
+    {
+      "question": "In which sport would you perform a slam dunk?",
+      "options": [
+        "Volleyball",
+        "Basketball",
+        "Handball",
+        "Water polo"
+      ],
+      "answer": "Basketball"
+    },
+    {
+      "question": "How many rings are on the Olympic flag?",
+      "options": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "answer": "5"
+    },
+    {
+      "question": "What is a perfect score in ten-pin bowling?",
+      "options": [
+        "200",
+        "250",
+        "300",
+        "350"
+      ],
+      "answer": "300"
+    },
+    {
+      "question": "In cricket, how many legal balls are in a standard over?",
+      "options": [
+        "4",
+        "5",
+        "6",
+        "8"
+      ],
+      "answer": "6"
+    },
+    {
+      "question": "Which Grand Slam tennis tournament is played on grass?",
+      "options": [
+        "US Open",
+        "French Open",
+        "Wimbledon",
+        "Australian Open"
+      ],
+      "answer": "Wimbledon"
+    },
+    {
+      "question": "How long is a marathon?",
+      "options": [
+        "30 km",
+        "38.5 km",
+        "42.195 km",
+        "50 km"
+      ],
+      "answer": "42.195 km"
+    },
+    {
+      "question": "The Tour de France is a race in which sport?",
+      "options": [
+        "Running",
+        "Cycling",
+        "Motor racing",
+        "Sailing"
+      ],
+      "answer": "Cycling"
+    },
+    {
+      "question": "In which sport does \"love\" mean a score of zero?",
+      "options": [
+        "Tennis",
+        "Golf",
+        "Cricket",
+        "Baseball"
+      ],
+      "answer": "Tennis"
+    }
+  ]
+}
